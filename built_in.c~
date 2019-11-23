@@ -1,0 +1,40 @@
+#include "sddell.h"
+int ownCmdHandler(char** divide, char* buffer, size_t buf) 
+{ 
+    int NoOfOwnCmds = 4, i, switchOwnArg = 0; 
+    char* ListOfOwnCmds[NoOfOwnCmds]; 
+    char* username; 
+  
+    ListOfOwnCmds[0] = "exit";
+    ListOfOwnCmds[1] = "cd"; 
+    ListOfOwnCmds[2] = "help"; 
+    ListOfOwnCmds[3] = "hello"; 
+  
+    for (i = 0; i < NoOfOwnCmds; i++) { 
+        if (strcmp(divide[0], ListOfOwnCmds[i]) == 0) { 
+            switchOwnArg = i + 1; 
+            break; 
+        } 
+    }
+  
+    switch (switchOwnArg) { 
+    case 1: 
+      exit_sh(buffer, buf); 
+    case 2: 
+        chdir(arrp[1]); 
+        return 1; 
+    case 3: 
+      printf("help"); 
+        return 1;
+	    case 4: 
+        username = getenv("USER"); 
+        printf("\nHello %s.\nMind that this is "
+            "not a place to play around."
+            "\nUse help to know more..\n", 
+            username); 
+        return 1; 
+    default: 
+        break; 
+    } 
+  return 0; 
+}

@@ -1,0 +1,22 @@
+#include "sddell.h"
+int env_sh(void) {
+  for (size_t i = 0; environ[i] != NULL; i++) {
+    printf("%s\n", environ[i]);
+  }
+  return 0;
+}
+
+void exit_sh(char *buffer, int buf)
+{
+if(strcmp(buffer,"exit\n") == 0)
+        {
+          free(buffer);
+          exit(1);
+        }
+
+      if(buf  == EOF)
+        {
+          write(STDOUT_FILENO, "\n", 1);
+          exit(0);
+        }
+}
